@@ -1,8 +1,8 @@
 // Edit this file to personalise the website. Every section is rendered from this object.
 window.portfolioData = {
   person: {
-    fullName: "Your Name",
-    firstName: "Your Name",
+    fullName: "Kar Seng",
+    firstName: "Kar Seng",
     shortName: "YN",
     location: "Kuala Lumpur, Malaysia",
     discipline: "Cybersecurity student",
