@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Personal portfolio featuring selected work, experience, credentials, education, and contact details."
+    />
+    <meta name="theme-color" content="#0d0b14" />
+    <title>Your Name — Portfolio</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d0b14'/%3E%3Cpath d='M18 20h11l3 6 3-6h11L36 35v11h-8V35L18 20Z' fill='%23ff8b6b'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="brand-mark" data-short-name>YN</span>
+        <span class="brand-label" data-full-name>Your Name</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#ctfs">CTFs</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#credentials">Credentials</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section id="home" class="hero section-shell">
+        <div class="terminal-card reveal">
+          <div class="terminal-bar">
+            <span>Independent portfolio · <span data-year></span></span>
+            <span class="status"><i></i><span data-status>Available</span></span>
+          </div>
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">Hello, I’m <span data-first-name>Your Name</span>.</p>
+              <h1 data-hero-heading>
+                I turn complex ideas into <span>clear, useful work.</span>
+              </h1>
+              <p class="hero-intro" data-hero-intro>
+                Add a concise introduction that explains what you do, what you care about, and the kind of work you want to be known for.
+              </p>
+              <div class="button-row">
+                <a class="button button-primary" href="#ctfs">View my CTF record</a>
+                <a class="button button-secondary" href="#about">About me</a>
+              </div>
+            </div>
+            <div class="portrait-wrap" aria-label="Profile image area">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="portrait image-slot" data-image-key="profile" data-label="Add your portrait">
+                <span data-short-name>YN</span>
+              </div>
+              <span class="portrait-note">Portrait</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-foot reveal">
+          <p>Based in <span data-location>Your city</span></p>
+          <p><span data-discipline>Your field</span> · <span data-focus>Your focus</span></p>
+          <a href="#ctfs">See competition record <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section id="ctfs" class="section section-shell">
+        <div class="section-heading split reveal">
+          <div>
+            <p class="section-kicker">01 / Competition record</p>
+            <h2>Built through competition.</h2>
+          </div>
+          <p class="section-note">A chronological record of CTFs, placements, teams, and formats. Results speak for themselves—no write-ups required.</p>
+        </div>
+        <div class="ctf-stats reveal" data-ctf-stats></div>
+        <div class="ctf-ledger" data-ctfs></div>
+      </section>
+
+      <section id="about" class="section section-shell">
+        <div class="section-heading reveal">
+          <p class="section-kicker">02 / Profile</p>
+          <h2>The person behind the work.</h2>
+        </div>
+        <div class="about-layout">
+          <div class="about-copy reveal">
+            <p class="lead" data-about-lead>
+              Use this space for a confident, human introduction—not a full résumé.
+            </p>
+            <p data-about-body>
+              Explain the thread that connects your interests, experience, and current direction. Two short paragraphs are usually enough.
+            </p>
+          </div>
+          <dl class="profile-facts reveal" data-profile-facts></dl>
+        </div>
+      </section>
+
+      <section id="experience" class="section section-shell">
+        <div class="section-heading reveal">
+          <p class="section-kicker">03 / Experience</p>
+          <h2>Industry experience.</h2>
+        </div>
+        <div class="experience-layout">
+          <div class="experience-feature image-slot reveal" data-image-key="experience" data-label="Add a workplace or project image">
+            <div>
+              <span>Featured experience</span>
+              <strong data-experience-feature>Role / Organisation</strong>
+            </div>
+          </div>
+          <div class="timeline" data-experience></div>
+        </div>
+      </section>
+
+      <section id="credentials" class="section section-shell">
+        <div class="section-heading split reveal">
+          <div>
+            <p class="section-kicker">04 / Credentials</p>
+            <h2>Learning made visible.</h2>
+          </div>
+          <p class="section-note">Certificates, awards, publications, memberships, or professional milestones all fit here.</p>
+        </div>
+        <div class="credential-grid" data-credentials></div>
+      </section>
+
+      <section id="education" class="section section-shell">
+        <div class="section-heading reveal">
+          <p class="section-kicker">05 / Education</p>
+          <h2>The foundation behind the work.</h2>
+        </div>
+        <div class="education-card reveal">
+          <div class="education-summary" data-education-summary></div>
+          <div class="modules">
+            <p class="mini-label">Selected learning</p>
+            <div data-modules></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="section-shell contact-inner reveal">
+          <p class="section-kicker">06 / Let’s connect</p>
+          <h2>Have something interesting in mind?</h2>
+          <p data-contact-copy>Send me a note, or connect with me on the platforms below.</p>
+          <div class="contact-links" data-contact-links></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>© <span data-year></span> <span data-full-name>Your Name</span></p>
+      <a href="#home">Back to top ↑</a>
+    </footer>
+
+    <dialog class="image-modal" aria-label="Image preview">
+      <button class="modal-close" type="button" aria-label="Close image preview">×</button>
+      <img alt="" />
+      <p></p>
+    </dialog>
+  </body>
+</html>
