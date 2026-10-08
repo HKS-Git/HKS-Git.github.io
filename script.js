@@ -54,24 +54,27 @@ function renderCTFs() {
     .join("");
 
   $("[data-ctfs]").innerHTML = data.ctfs
-    .map(
-      (ctf, index) => `
+    .map((ctf, index) => {
+      const image = ctf.images[0];
+      const thumbnail = image
+        ? `<div class="ctf-thumb image-slot" data-src="assets/images/${image}" data-event-index="${index}" data-label="${ctf.event} photos"><span>CTF ${String(index + 1).padStart(2, "0")}</span></div>`
+        : `<div class="ctf-thumb ctf-thumb--empty" aria-hidden="true"><span>CTF ${String(index + 1).padStart(2, "0")}</span></div>`;
+      return `
         <article class="ctf-row reveal">
           <span class="ctf-index">${String(index + 1).padStart(2, "0")}</span>
-          <div class="ctf-thumb image-slot" data-src="${ctf.image}" data-label="${ctf.event}">
-            <span>CTF ${String(index + 1).padStart(2, "0")}</span>
-          </div>
+          ${thumbnail}
           <div class="ctf-main">
             <time>${ctf.date}</time>
             <h3>${ctf.event}</h3>
             <p>${ctf.team} <span aria-hidden="true">·</span> ${ctf.format}</p>
+            ${image ? `<button type="button" class="ctf-gallery-trigger" data-gallery-event="${index}">View ${ctf.images.length === 1 ? "photo" : `${ctf.images.length} photos`} ↗</button>` : ""}
           </div>
           <div class="ctf-placement">
             <span>Result</span>
             <strong>${ctf.placement}</strong>
           </div>
-        </article>`,
-    )
+        </article>`;
+    })
     .join("");
 }
 
@@ -95,13 +98,11 @@ function renderExperience() {
 function renderCredentials() {
   $("[data-credentials]").innerHTML = data.credentials
     .map(
-      (credential, index) => `
-        <article class="credential-card reveal">
-          <div class="credential-image image-slot" data-src="${credential.image}" data-label="Add credential image ${String(index + 1).padStart(2, "0")}">
-            <span>Add credential image ${String(index + 1).padStart(2, "0")}</span>
-          </div>
+      (credential) => `
+        <article class="credential-card credential-card--text reveal">
+          <div class="credential-issuer">${credential.issuer}</div>
           <div class="credential-body">
-            <div class="card-meta"><span>${credential.issuer}</span><span>${credential.date}</span></div>
+            <div class="card-meta"><span>${credential.date}</span></div>
             <h3>${credential.title}</h3>
             <p>${credential.description}</p>
           </div>
@@ -224,16 +225,52 @@ function initImageModal() {
   const modal = $(".image-modal");
   const modalImage = $("img", modal);
   const modalCaption = $("p", modal);
+  const modalCount = $(".modal-count", modal);
+  const previous = $(".modal-prev", modal);
+  const next = $(".modal-next", modal);
+  let activeImages = [];
+  let activeIndex = 0;
+
+  function showImage() {
+    const current = activeImages[activeIndex];
+    modalImage.src = current.src;
+    modalImage.alt = current.label;
+    modalCaption.textContent = current.label;
+    modalCount.textContent = `${activeIndex + 1} / ${activeImages.length}`;
+    previous.hidden = activeImages.length < 2;
+    next.hidden = activeImages.length < 2;
+  }
+
+  function openGallery(eventIndex) {
+    const ctf = data.ctfs[eventIndex];
+    if (!ctf?.images.length) return;
+    activeImages = ctf.images.map((filename) => ({
+      src: `assets/images/${filename}`,
+      label: `${ctf.event} · ${filename.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")}`,
+    }));
+    activeIndex = 0;
+    showImage();
+    modal.showModal();
+  }
 
   function openModal(slot) {
     if (!slot.dataset.loadedSrc) return;
-    modalImage.src = slot.dataset.loadedSrc;
-    modalImage.alt = slot.dataset.label;
-    modalCaption.textContent = slot.dataset.label;
+    if (slot.dataset.eventIndex !== undefined) {
+      openGallery(Number(slot.dataset.eventIndex));
+      return;
+    }
+    activeImages = [{ src: slot.dataset.loadedSrc, label: slot.dataset.label }];
+    activeIndex = 0;
+    showImage();
     modal.showModal();
   }
 
   document.addEventListener("click", (event) => {
+    const galleryButton = event.target.closest("[data-gallery-event]");
+    if (galleryButton) {
+      openGallery(Number(galleryButton.dataset.galleryEvent));
+      return;
+    }
     const slot = event.target.closest(".image-slot.has-image");
     if (slot) openModal(slot);
   });
@@ -247,6 +284,19 @@ function initImageModal() {
   });
 
   $(".modal-close").addEventListener("click", () => modal.close());
+  previous.addEventListener("click", () => {
+    activeIndex = (activeIndex - 1 + activeImages.length) % activeImages.length;
+    showImage();
+  });
+  next.addEventListener("click", () => {
+    activeIndex = (activeIndex + 1) % activeImages.length;
+    showImage();
+  });
+  modal.addEventListener("keydown", (event) => {
+    if (activeImages.length < 2) return;
+    if (event.key === "ArrowLeft") previous.click();
+    if (event.key === "ArrowRight") next.click();
+  });
   modal.addEventListener("click", (event) => {
     if (event.target === modal) modal.close();
   });

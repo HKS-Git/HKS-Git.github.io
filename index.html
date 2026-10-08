@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Personal portfolio featuring selected work, experience, credentials, education, and contact details."
+      content="Kar Seng's cybersecurity portfolio: CTF results, EY consulting internship, credentials, and student challenge creation."
     />
-    <meta name="theme-color" content="#0d0b14" />
+    <meta name="theme-color" content="#f7f9fd" />
     <title>Kar Seng — Portfolio</title>
     <link
       rel="icon"
@@ -29,7 +29,7 @@
 
     <header class="site-header">
       <a class="brand" href="#home" aria-label="Go to home">
-        <span class="brand-mark" data-short-name>YN</span>
+        <span class="brand-mark" data-short-name>KS</span>
         <span class="brand-label" data-full-name>Kar Seng</span>
       </a>
 
@@ -70,13 +70,13 @@
                 <a class="button button-secondary" href="#about">About me</a>
               </div>
             </div>
-            <div class="portrait-wrap" aria-label="Profile image area">
+            <div class="portrait-wrap" aria-label="UTAR-FICT 2026 winning team photo">
               <div class="orbit orbit-one"></div>
               <div class="orbit orbit-two"></div>
-              <div class="portrait image-slot" data-image-key="profile" data-label="Add your portrait">
-                <span data-short-name>YN</span>
+              <div class="portrait image-slot" data-image-key="profile" data-label="UTAR-FICT 2026 winning teams">
+                <span data-short-name>KS</span>
               </div>
-              <span class="portrait-note">Portrait</span>
+              <span class="portrait-note">UTAR-FICT · 2026</span>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@
             <p class="section-kicker">01 / Competition record</p>
             <h2>Built through competition.</h2>
           </div>
-          <p class="section-note">A chronological record of CTFs, placements, teams, and formats. Results speak for themselves—no write-ups required.</p>
+          <p class="section-note">A record of the teams, challenges, and results behind each competition. Open a photo to browse the moments around it.</p>
         </div>
         <div class="ctf-stats reveal" data-ctf-stats></div>
         <div class="ctf-ledger" data-ctfs></div>
@@ -115,6 +115,14 @@
           </div>
           <dl class="profile-facts reveal" data-profile-facts></dl>
         </div>
+        <figure class="community-feature reveal">
+          <div class="community-photo image-slot" data-image-key="community" data-label="FSEC-SS challenge creators, 2026"></div>
+          <figcaption>
+            <span>Beyond the scoreboard</span>
+            <strong>Building challenges with FSEC-SS.</strong>
+            <p>Part of the APU student section’s challenge creator team for 2026/27.</p>
+          </figcaption>
+        </figure>
       </section>
 
       <section id="experience" class="section section-shell">
@@ -123,9 +131,9 @@
           <h2>Industry experience.</h2>
         </div>
         <div class="experience-layout">
-          <div class="experience-feature image-slot reveal" data-image-key="experience" data-label="Add a workplace or project image">
+          <div class="experience-feature reveal">
             <div>
-              <span>Featured experience</span>
+              <span>Consulting · 2026</span>
               <strong data-experience-feature>Role / Organisation</strong>
             </div>
           </div>
@@ -139,7 +147,7 @@
             <p class="section-kicker">04 / Credentials</p>
             <h2>Learning made visible.</h2>
           </div>
-          <p class="section-note">Certificates, awards, publications, memberships, or professional milestones all fit here.</p>
+          <p class="section-note">Course and professional learning alongside the competition record.</p>
         </div>
         <div class="credential-grid" data-credentials></div>
       </section>
@@ -177,6 +185,11 @@
       <button class="modal-close" type="button" aria-label="Close image preview">×</button>
       <img alt="" />
       <p></p>
+      <div class="modal-controls">
+        <button class="modal-prev" type="button" aria-label="Previous photo">←</button>
+        <span class="modal-count" aria-live="polite"></span>
+        <button class="modal-next" type="button" aria-label="Next photo">→</button>
+      </div>
     </dialog>
   </body>
 </html>
