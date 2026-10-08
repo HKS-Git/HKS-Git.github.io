@@ -1468,11 +1468,10 @@ h1 span {
   align-items: center;
   padding: 24px 12px;
   border-bottom: 1px solid var(--line-strong);
-  transition: background 180ms ease, padding 180ms ease;
+  transition: background 180ms ease;
 }
 
 .ctf-row:hover {
-  padding-inline: 20px;
   background: rgba(49, 92, 234, 0.035);
 }
 
@@ -1529,7 +1528,10 @@ h1 span {
 
 .ctf-placement {
   display: grid;
+  align-self: start;
+  min-width: 0;
   gap: 5px;
+  padding-top: 4px;
   text-align: right;
 }
 
@@ -1544,6 +1546,15 @@ h1 span {
 .ctf-placement strong {
   color: var(--coral);
   font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.ctf-placement-context {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 .ctf-gallery-trigger {
@@ -2130,10 +2141,15 @@ h1 span {
   .ctf-placement {
     grid-column: 3;
     grid-row: 2;
-    display: flex;
-    gap: 10px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 4px 10px;
     align-items: baseline;
+    padding-top: 0;
     text-align: left;
+  }
+
+  .ctf-placement-context {
+    grid-column: 2;
   }
 
   .ctf-placement strong {

@@ -71,6 +71,7 @@ function renderCTFs() {
           <div class="ctf-placement">
             <span>Result</span>
             <strong>${ctf.placement}</strong>
+            ${ctf.placementDetail ? `<small class="ctf-placement-context">${ctf.placementDetail}</small>` : ""}
           </div>
         </article>`;
   };
