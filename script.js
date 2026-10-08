@@ -81,7 +81,7 @@ function renderCTFs() {
     <div class="ctf-group-label"><span>Selected results</span><span>Podium finishes</span></div>
     ${featured.map(renderRow).join("")}
     <details class="ctf-archive">
-      <summary><span>Explore the wider CTF record</span><small>${archive.length} more competitions</small><span class="ctf-archive-icon" aria-hidden="true">+</span></summary>
+      <summary><span class="ctf-archive-icon" aria-hidden="true">+</span><span class="ctf-archive-label">Explore the wider CTF record</span><small>${archive.length} more competitions</small></summary>
       <div class="ctf-archive-content">${archive.map(renderRow).join("")}</div>
     </details>`;
 }

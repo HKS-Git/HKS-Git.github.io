@@ -1384,6 +1384,8 @@ h1 span {
 }
 
 .ctf-ledger {
+  --ctf-columns: 38px 150px minmax(0, 1fr) 160px;
+  --ctf-gap: clamp(18px, 3vw, 40px);
   border-top: 1px solid var(--line-strong);
 }
 
@@ -1400,40 +1402,50 @@ h1 span {
 }
 
 .ctf-archive {
-  margin-top: 26px;
-  border: 1px solid var(--line-strong);
-  border-radius: 9px;
-  background: var(--panel);
+  margin: 0;
 }
 
 .ctf-archive summary {
-  display: flex;
+  display: grid;
+  grid-template-columns: var(--ctf-columns);
   align-items: center;
-  gap: 18px;
-  padding: 23px 26px;
+  gap: var(--ctf-gap);
+  padding: 24px 12px;
+  border-bottom: 1px solid var(--line-strong);
   cursor: pointer;
   list-style: none;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .ctf-archive summary::-webkit-details-marker {
   display: none;
 }
 
-.ctf-archive summary:hover,
+.ctf-archive summary:hover {
+  background: rgba(49, 92, 234, 0.035);
+}
+
 .ctf-archive summary:focus-visible {
-  background: rgba(49, 92, 234, 0.045);
+  outline: 2px solid var(--coral);
+  outline-offset: -2px;
+}
+
+.ctf-archive-label {
+  grid-column: 2 / 4;
 }
 
 .ctf-archive summary small {
-  margin-left: auto;
+  grid-column: 4;
   color: var(--dim);
   font-family: var(--font-mono);
   font-size: 0.69rem;
   font-weight: 400;
+  text-align: right;
 }
 
 .ctf-archive-icon {
+  grid-column: 1;
+  justify-self: start;
   color: var(--coral);
   font-size: 1.3rem;
   font-weight: 400;
@@ -1446,14 +1458,13 @@ h1 span {
 }
 
 .ctf-archive-content {
-  padding: 0 14px 14px;
-  border-top: 1px solid var(--line);
+  padding: 0;
 }
 
 .ctf-row {
   display: grid;
-  grid-template-columns: 38px 150px minmax(0, 1fr) 160px;
-  gap: clamp(18px, 3vw, 40px);
+  grid-template-columns: var(--ctf-columns);
+  gap: var(--ctf-gap);
   align-items: center;
   padding: 24px 12px;
   border-bottom: 1px solid var(--line-strong);
@@ -2087,9 +2098,27 @@ h1 span {
     font-size: 0.58rem;
   }
 
+  .ctf-ledger {
+    --ctf-columns: 28px 82px minmax(0, 1fr);
+    --ctf-gap: 14px;
+  }
+
+  .ctf-archive summary {
+    gap: 6px var(--ctf-gap);
+    padding: 20px 0;
+  }
+
+  .ctf-archive-icon {
+    grid-row: 1 / 3;
+  }
+
+  .ctf-archive-label,
+  .ctf-archive summary small {
+    grid-column: 2 / -1;
+    text-align: left;
+  }
+
   .ctf-row {
-    grid-template-columns: 28px 82px minmax(0, 1fr);
-    gap: 14px;
     padding: 20px 0;
   }
 
