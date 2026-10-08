@@ -78,7 +78,7 @@ function renderCTFs() {
   const featured = entries.filter(({ ctf }) => ctf.featured).map((entry, index) => ({ ...entry, displayIndex: index + 1 }));
   const archive = entries.filter(({ ctf }) => !ctf.featured).map((entry, index) => ({ ...entry, displayIndex: featured.length + index + 1 }));
   $("[data-ctfs]").innerHTML = `
-    <div class="ctf-group-label"><span>Selected results</span><span>Top five placements</span></div>
+    <div class="ctf-group-label"><span>Selected results</span><span>Podium finishes</span></div>
     ${featured.map(renderRow).join("")}
     <details class="ctf-archive">
       <summary><span>Explore the wider CTF record</span><small>${archive.length} more competitions</small><span class="ctf-archive-icon" aria-hidden="true">+</span></summary>
