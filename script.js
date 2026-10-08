@@ -53,15 +53,14 @@ function renderCTFs() {
     )
     .join("");
 
-  $("[data-ctfs]").innerHTML = data.ctfs
-    .map((ctf, index) => {
+  const renderRow = ({ ctf, index, displayIndex }) => {
       const image = ctf.images[0];
       const thumbnail = image
-        ? `<div class="ctf-thumb image-slot" data-src="assets/images/${image}" data-event-index="${index}" data-label="${ctf.event} photos"><span>CTF ${String(index + 1).padStart(2, "0")}</span></div>`
-        : `<div class="ctf-thumb ctf-thumb--empty" aria-hidden="true"><span>CTF ${String(index + 1).padStart(2, "0")}</span></div>`;
+        ? `<div class="ctf-thumb image-slot" data-src="assets/images/${image}" data-event-index="${index}" data-label="${ctf.event} photos"><span>CTF ${String(displayIndex).padStart(2, "0")}</span></div>`
+        : `<div class="ctf-thumb ctf-thumb--empty" aria-hidden="true"><span>CTF ${String(displayIndex).padStart(2, "0")}</span></div>`;
       return `
         <article class="ctf-row reveal">
-          <span class="ctf-index">${String(index + 1).padStart(2, "0")}</span>
+          <span class="ctf-index">${String(displayIndex).padStart(2, "0")}</span>
           ${thumbnail}
           <div class="ctf-main">
             <time>${ctf.date}</time>
@@ -74,8 +73,17 @@ function renderCTFs() {
             <strong>${ctf.placement}</strong>
           </div>
         </article>`;
-    })
-    .join("");
+  };
+  const entries = data.ctfs.map((ctf, index) => ({ ctf, index }));
+  const featured = entries.filter(({ ctf }) => ctf.featured).map((entry, index) => ({ ...entry, displayIndex: index + 1 }));
+  const archive = entries.filter(({ ctf }) => !ctf.featured).map((entry, index) => ({ ...entry, displayIndex: featured.length + index + 1 }));
+  $("[data-ctfs]").innerHTML = `
+    <div class="ctf-group-label"><span>Selected results</span><span>Top five placements</span></div>
+    ${featured.map(renderRow).join("")}
+    <details class="ctf-archive">
+      <summary><span>Explore the wider CTF record</span><small>${archive.length} more competitions</small><span class="ctf-archive-icon" aria-hidden="true">+</span></summary>
+      <div class="ctf-archive-content">${archive.map(renderRow).join("")}</div>
+    </details>`;
 }
 
 function renderExperience() {

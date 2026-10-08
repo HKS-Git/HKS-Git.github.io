@@ -1387,6 +1387,69 @@ h1 span {
   border-top: 1px solid var(--line-strong);
 }
 
+.ctf-group-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 12px;
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.ctf-archive {
+  margin-top: 26px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--panel);
+}
+
+.ctf-archive summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 23px 26px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+
+.ctf-archive summary::-webkit-details-marker {
+  display: none;
+}
+
+.ctf-archive summary:hover,
+.ctf-archive summary:focus-visible {
+  background: rgba(49, 92, 234, 0.045);
+}
+
+.ctf-archive summary small {
+  margin-left: auto;
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  font-weight: 400;
+}
+
+.ctf-archive-icon {
+  color: var(--coral);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.ctf-archive[open] .ctf-archive-icon {
+  transform: rotate(45deg);
+}
+
+.ctf-archive-content {
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--line);
+}
+
 .ctf-row {
   display: grid;
   grid-template-columns: 38px 150px minmax(0, 1fr) 160px;
